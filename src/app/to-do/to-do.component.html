@@ -1,0 +1,33 @@
+<div class="container mt-4">
+      <h1 class="title-font">TO DO List</h1>
+      <form (ngSubmit)="addTodo()" class="mb-3 row align-items-center">
+            <div class="col-4">
+                  <label for="title">Title</label> <br>
+                  <input type="text" id="title" [(ngModel)]="newTodo.title" name="title" required />
+            </div>
+            <div class="col-7">
+                  <label for="description">Description</label> <br>
+                  <textarea id="description" [(ngModel)]="newTodo.description" name="description"></textarea>
+            </div>
+            <div class="col-1">
+                  <button type="submit" class="btn btn-success" [disabled]="!newTodo.title">Add ToDo</button>
+            </div>
+      </form>
+
+      <div class="pb-3"> <label for="description" style="color:blue; font-size: 16px;">Summary List</label></div>
+
+      <ul class="list-group" style="max-height: 450px; overflow-y: auto; overflow-x: hidden;">
+            <li *ngFor="let todo of todos" class="list-group-item d-flex row justify-content-between align-items-center">
+                  <div class="col-10">
+                        <h5 [class.text-decoration-line-through]="todo.isCompleted" (click)="toggleComplete(todo)">
+                              {{ todo.title }}
+                        </h5>
+                        <p *ngIf="todo.description" class="description-text">{{ todo.description }}</p>
+                  </div>
+                  <div class="col-2 text-center">
+                        <button (click)="editTodo(todo)" class="btn btn-warning me-4">Edit</button>
+                        <button (click)="deleteTodo(todo.id)" class="btn btn-danger">Delete</button>
+                  </div>
+            </li>
+      </ul>
+</div>
