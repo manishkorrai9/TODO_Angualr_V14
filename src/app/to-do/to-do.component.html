@@ -18,8 +18,11 @@
 
       <ul class="list-group" style="height: 450px; overflow-y: auto; overflow-x: hidden;">
             <ng-container *ngIf="todos && todos.length > 0; else noDataTemplate">
-              <li *ngFor="let todo of todos" class="list-group-item d-flex row justify-content-between align-items-center">
-                <div class="col-10">
+              <li *ngFor="let todo of todos ; let i = index" class="list-group-item d-flex row justify-content-between align-items-center">
+                  <div class="col-1 text-center">
+                        <strong>{{ i + 1 }}.</strong>
+                  </div>
+                <div class="col-9">
                   <h5 [class.text-decoration-line-through]="todo.isCompleted" (click)="toggleComplete(todo)">
                     {{ todo.title }}
                   </h5>
